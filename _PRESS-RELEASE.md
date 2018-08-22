@@ -24,13 +24,15 @@ Once the project moves into development, the press release can be used as a touc
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 
-  The market will be a younger demographic, who will enjoy a free, customizeable game.
+  The market will be a younger demographic, who will enjoy a free, customizable game.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
-  This game of snake allows you to customize your experience!
-  Choose game colors, and starting snake size.
+  This game of snake allows you to customize your experience and save your high score!
+  > Choose game colors, and starting snake size.
+  write CSS alternative code to JavaScript
+
   Written primarily in JavaScript, the game is lightweight, and accessible to almost any user.
 
 ## Problem ##
@@ -41,7 +43,7 @@ Once the project moves into development, the press release can be used as a touc
 ## Solution ##
   > Describe how your product elegantly solves the problem.
 
-  Not only can anybody play my game, it is also customizeable to improve the user-experience.
+  Not only can anybody play my game, it is also customizable to improve the user-experience.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
