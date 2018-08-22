@@ -21,12 +21,6 @@
   trail=[];
   tail = 3;
 
-  let highScore = tail;
-  const savedHighScore = {};
-
-  var saveHighScore = (name, highScore) => {
-  }
-
   function game() {
   	px+=xv;
   	py+=yv;
@@ -49,9 +43,10 @@
   	for(var i=0;i<trail.length;i++) {
   		ctx.fillRect(trail[i].x*gs,trail[i].y*gs,gs-2,gs-2);
   		if(trail[i].x==px && trail[i].y==py) {
-  			tail = 5;
+  			tail = 3;
   		}
   	}
+
   	trail.push({x:px,y:py});
   	while(trail.length>tail) {
   	trail.shift();
@@ -64,7 +59,26 @@
   	}
   	ctx.fillStyle="red";
   	ctx.fillRect(ax*gs,ay*gs,gs-2,gs-2);
+
+    // high score functionality code
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+      let highScore = tail;
+      const savedHighScore = {};
+
+      var saveHighScore = (name, highScore) => {
+        return savedHighScore[name] = highScore;
+      }
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    // save and display high score at game end
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+      if (trail[i].x==px && trail[i].y==py) {
+        saveHighScore('undefined', highScore);
+        console.log(Object.values(savedHighScore));
+      }
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   }
+
   function keyPush(evt) {
   	switch(evt.keyCode) {
   		case 37:
@@ -85,6 +99,7 @@
 
   <div ng-app="app">
     <app />
+
   </div>
   <script type="text/javascript" src="index.js"></script>
   <script type="text/javascript" src="services/items.js"></script>
