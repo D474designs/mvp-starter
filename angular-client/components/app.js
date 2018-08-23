@@ -9,3 +9,9 @@ angular.module('app')
   controller: 'AppCtrl',
   templateUrl: '/templates/app.html'
 });
+
+export class App {
+
+  constructor() {
+  }
+}
