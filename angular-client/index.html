@@ -96,7 +96,7 @@ allow variable customization
     }
   </script>
 
-    <canvas id="gc" width="400" height="400"></canvas>
+    <canvas id="gc" width="400" height="400">Loading for some reason!</canvas>
 
     <script>
     window.addEventListener("keydown", function(e) {
@@ -108,7 +108,7 @@ allow variable customization
 
     window.onload=function() {
     	canv=document.getElementById("gc");
-    	ctx=canv.getContext("2d");
+    	ctx=canv.getContext("2d", { alpha: false });
     	document.addEventListener("keydown",keyPush);
     	setInterval(game,1000/15);
     }
@@ -171,7 +171,7 @@ allow variable customization
         // }
 
         var saveHighScore = (nameo, highScore) => {
-          return savedHighScore[nameo] = highScore;
+          return savedHighScore[nameo] = highScore
         }
       // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -222,7 +222,7 @@ allow variable customization
     }
 
     #gameContainer, #pastScores {
-      width: 600px;
+      /* width: 600px; */
     }
 
     .row {
@@ -239,7 +239,7 @@ allow variable customization
     #startGame {
       width: 120px;
       padding: 10px;
-      margin-top: 5px;
+      margin-top: 25px;
       text-align: center;
       background-color: black;
       color: white;
