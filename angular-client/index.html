@@ -16,17 +16,20 @@
 <!--
 
 TODO;
+make game reset button
 fix high scores
   stop infinite loop if possible
   add another object that takes in initial object values
 render as angular components
 render high score component
 tidy up name submission form
-  clear after submission
+  x clear after submission
   remove after game starts
   reappear after game restart
 incorporate mongoDB to store game values
 allow variable customization
+  change frankenstein to player name when submitted
+  change frankenstein back to frankenstein on game reset
   change background color
   change snake color
   change apple color
@@ -37,20 +40,41 @@ allow variable customization
 -->
 
 <body ng-controller="snakeCtrl">
+  <center>
   <style>
-  body {
+  /* body {
     background-color: purple;
+  } */
+  body {
+      -webkit-animation: colorchange 60s infinite;
+      animation: colorchange 60s infinite;
+      }
+
+  @-webkit-keyframes colorchange {
+
+       0%  {background: #E6E6FA;}
+      25%  {background: #EE82EE;}
+      50%  {background: #FF00FF;}
+      75%  {background: #8A2BE2;}
+      100% {background: #8B008B;}
   }
   a {
     color: orange;
     text-decoration: none;
+    /* text-shadow: 3px 3px 3px purple; */
   }
   p {
     color: white;
+    /* text-shadow: 3px 3px 3px purple; */
+  }
+  h1 {
+    /* text-shadow: 3px 3px 3px purple; */
+  }
+  h2 {
+    /* text-shadow: 3px 3px 3px purple; */
   }
   </style>
 
-  <center>
     <a href="https://D474designs.webs.com"><h1>Super Duper Ultra Mega Snake Game Online</h1></a>
 
     <form id="form" onsubmit="return false;">
@@ -66,7 +90,7 @@ allow variable customization
   <script>
     var frankenstein= function() {
         var nameo = document.getElementById("userInput").value;
-        document.getElementById("userInput").reset;
+        // document.getElementById("userInput").reset();
         document.getElementById("userInput").value="";
         console.log(nameo);
     }
@@ -139,6 +163,13 @@ allow variable customization
         let highScore = tail;
         const savedHighScore = {};
 
+        // var frankenstein= function() {
+        //     var nameo = document.getElementById("userInput").value;
+        //     // document.getElementById("userInput").reset();
+        //     document.getElementById("userInput").value="";
+        //     console.log(nameo);
+        // }
+
         var saveHighScore = (nameo, highScore) => {
           return savedHighScore[nameo] = highScore;
         }
@@ -171,7 +202,6 @@ allow variable customization
     }
     </script>
     <a href="https://D474designs.webs.com"><h2>D474designs</h2></a>
-  </center>
 
   <div ng-app="app">
     <!--Loading for some reason! -->
@@ -188,11 +218,11 @@ allow variable customization
   <style>
     * {
       font-family: "Lucida Grande";
+      text-shadow: 3px 3px 3px purple, -3px -3px 3px magenta;
     }
 
     #gameContainer, #pastScores {
       width: 600px;
-      float: center;
     }
 
     .row {
@@ -221,7 +251,6 @@ allow variable customization
     }
   </style>
 
-    <center>
       <div id="gameContainer">
         <h3>Score: {{score}}</h3>
         <div>
