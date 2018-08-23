@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+  <html ng-app='ngSnake'>
 <head>
   <title>SDUMSGO</title>
-  
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 
-  <script src="angular/angular.js"></script>
+  <script src="../node_modules/angular/angular.js"></script>
+    <!-- <script src="angular.min.js"></script> -->
 </head>
 
 <!--
@@ -35,7 +36,7 @@ allow variable customization
 
 -->
 
-<body>
+<body ng-controller="snakeCtrl">
   <style>
   body {
     background-color: purple;
@@ -50,28 +51,36 @@ allow variable customization
   </style>
 
   <center>
-
     <a href="https://D474designs.webs.com"><h1>Super Duper Ultra Mega Snake Game Online</h1></a>
 
     <form id="form" onsubmit="return false;">
-
     <!-- style="position:absolute; top:50%; left:5%; width:40%;"
     style="position:absolute; top:80%; left:5%; width:40%;" -->
-
         <input type="text" id="userInput" />
         <input type="submit" onclick="frankenstein();" />
     </form>
+
   <p>Enter Your Name Frankenstein</p>
   </br>
+
   <script>
-    function frankenstein() {
+    var frankenstein= function() {
         var nameo = document.getElementById("userInput").value;
+        document.getElementById("userInput").reset;
+        console.log(nameo);
     }
   </script>
 
     <canvas id="gc" width="400" height="400"></canvas>
 
     <script>
+    window.addEventListener("keydown", function(e) {
+      // space and arrow keys
+      if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+      }
+    }, false);
+
     window.onload=function() {
     	canv=document.getElementById("gc");
     	ctx=canv.getContext("2d");
@@ -84,7 +93,6 @@ allow variable customization
     xv=yv=0;
     trail=[];
     tail = 3;
-    nameo;
 
     function game() {
     	px+=xv;
@@ -130,17 +138,17 @@ allow variable customization
         let highScore = tail;
         const savedHighScore = {};
 
-        var saveHighScore = (name, highScore) => {
-          return savedHighScore[name] = highScore;
+        var saveHighScore = (nameo, highScore) => {
+          return savedHighScore[nameo] = highScore;
         }
       // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
       // save and display high score at game end
       // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        if (trail[i].x==px && trail[i].y==py) {
-          saveHighScore(nameo, highScore);
-          console.log(Object.values(savedHighScore));
-        }
+        // if (trail[i].x==px && trail[i].y==py) {
+        //   saveHighScore(nameo, highScore);
+        //   console.log(Object.values(savedHighScore));
+        // }
       // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     }
 
@@ -165,6 +173,7 @@ allow variable customization
   </center>
 
   <div ng-app="app">
+    <!--Loading for some reason! -->
     <app />
 
   </div>
@@ -173,5 +182,62 @@ allow variable customization
   <script type="text/javascript" src="components/app.js"></script>
   <script type="text/javascript" src="components/list.js"></script>
   <script type="text/javascript" src="components/listItem.js"></script>
+
+  <!-- ****************************************************** -->
+  <style>
+    * {
+      font-family: "Lucida Grande";
+    }
+
+    #gameContainer, #pastScores {
+      width: 600px;
+      float: center;
+    }
+
+    .row {
+      height: 26px;
+    }
+
+    .column {
+      border: 1px solid white;
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+    }
+
+    #startGame {
+      width: 120px;
+      padding: 10px;
+      margin-top: 5px;
+      text-align: center;
+      background-color: black;
+      color: white;
+    }
+
+    #startGame:hover {
+      color: red;
+      cursor: pointer;
+    }
+  </style>
+
+    <center>
+      <div id="gameContainer">
+        <h3>Score: {{score}}</h3>
+        <div>
+            <div class="row" ng-repeat="column in board">
+                <div class="column"
+                    ng-style="{'background-color': setStyling($parent.$index, $index)}"
+                    ng-repeat="row in column track by $index"
+                ></div>
+            </div>
+        </div>
+        <div id="startGame" ng-click="startGame()">Start!</div>
+      </div>
+
+      <!-- <script src="../node_modules/angular/angular.min.js"></script> -->
+      <script src="snake.js"></script>
+    </center>
+  <!-- ******************************************************* -->
+
 </body>
 </html>
