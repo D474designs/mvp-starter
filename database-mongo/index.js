@@ -1,11 +1,20 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/SDUMGO');
+
+// set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://localhost/SDUMGO'
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-db.on('error', function() {
-  console.log('mongoose connection error');
-});
+// var db = mongoose.connection;
+//
+// db.on('error', function() {
+//   console.log('mongoose connection error');
+// });
 
 db.once('open', function() {
   console.log('mongoose connected successfully');
